@@ -1,0 +1,163 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace quiz
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+        int sayac = 30,toplama,cikarma,carpma,bolme,dogru=0,yanlis=0;
+
+        private void boltxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            toplatxt.Text = "";
+            boltxt.Text = "";
+            cikartxt.Text = "";
+            carptxt.Text = "";
+            dogru = 0;
+            yanlis = 0;
+            sayac = 30;
+            toplalbl.Visible = true;
+
+            cikarlbl.Visible = true;
+
+            carplbl.Visible = true;
+
+            bollbl.Visible = true;
+            toplatxt.Visible = true;
+
+            carptxt.Visible = true;
+
+            cikartxt.Visible = true;
+
+            boltxt.Visible = true;
+            label1.Visible = true;
+            textBox1.Visible = true;
+            button2.Visible = true;
+            Random rnd = new Random();
+            int sayi1,sayi2, sayi3, sayi4, sayi5, sayi6, sayi7, sayi8;
+            sayi1 = rnd.Next(100);
+            sayi1lbl.Text = Convert.ToString(sayi1);
+            sayi2 = rnd.Next(100);
+            sayi2lbl.Text = Convert.ToString(sayi2);
+            toplama = sayi1 + sayi2;
+            
+            sayi3 = rnd.Next(100);
+            sayi3lbl.Text = Convert.ToString(sayi3);
+            sayi4 = rnd.Next(100);
+            sayi4lbl.Text = Convert.ToString(sayi4);
+            cikarma = sayi3 - sayi4;
+            sayi5 = rnd.Next(100);
+            sayi5lbl.Text = Convert.ToString(sayi5);
+            sayi6 = rnd.Next(100);
+            sayi6lbl.Text = Convert.ToString(sayi6);
+            carpma = sayi5 * sayi6;
+            sayi7 = rnd.Next(100);
+            sayi7lbl.Text = Convert.ToString(sayi7);
+            sayi8 = rnd.Next(100);
+            sayi8lbl.Text = Convert.ToString(sayi8);
+            bolme = sayi7 / sayi8;
+            timer1.Start();
+            timer1.Interval = 1000;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+
+            sayac--;
+            textBox1.Text = sayac.ToString();
+            if (sayac == 0)
+            {
+                timer1.Stop();
+
+                if (toplatxt.Text == Convert.ToString(toplama))
+                {
+                    dogru++;
+                }
+                else { yanlis++; }
+                if (carptxt.Text == Convert.ToString(carpma))
+                {
+                    dogru++;
+                }
+                else { yanlis++; }
+                if (cikartxt.Text == Convert.ToString(cikarma))
+                {
+                    dogru++;
+                }
+                else { yanlis++; }
+                if (boltxt.Text == Convert.ToString(bolme))
+                {
+                    dogru++;
+                }
+                else { yanlis++; }
+                MessageBox.Show("SÜRENİZ BİTTİ : " + sayac + "\n\nDOĞRU CEVAP SAYISI : " + dogru + "\n\nYANLIŞ CEVAP SAYISI " + yanlis);
+                toplatxt.Text = "";
+                boltxt.Text = "";
+                cikartxt.Text = "";
+                carptxt.Text = "";
+                dogru = 0;
+                yanlis = 0;
+            }
+            
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            textBox1.Text = "";
+            toplatxt.Text = "";
+            boltxt.Text = "";
+            cikartxt.Text = "";
+            carptxt.Text = "";
+            if (toplatxt.Text == Convert.ToString(toplama))
+            {
+                dogru++;
+            }
+            else { yanlis++; }
+            if (carptxt.Text == Convert.ToString(carpma))
+            {
+                dogru++;
+            }
+            else { yanlis++; }
+            if (cikartxt.Text == Convert.ToString(cikarma))
+            {
+                dogru++;
+            }
+            else { yanlis++; }
+            if (boltxt.Text == Convert.ToString(bolme))
+            {
+                dogru++;
+            }
+            else { yanlis++; }
+            int sayac1;
+            sayac1 = 30 - sayac;
+            MessageBox.Show("GEÇEN SÜRE : " + sayac1 + "saniye \n\nDOĞRU CEVAP SAYISI : " + dogru+ " \n\nYANLIŞ CEVAP SAYISI " + yanlis);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+    }
+}
